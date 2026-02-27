@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="description" content="Metamorphic Testing of Vision–Language Action–Enabled Robots" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg" />
     <title>Metamorphic Testing of Vision–Language Action–Enabled Robots</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -51,7 +50,7 @@
                 <div class="columns is-centered">
                   <div class="column is-8">
                     <div class="is-size-5 publication-authors has-text-centered">
-                      <span class="author-block"><a href="https://scholar.google.com/citations?user=-3y0BlAAAAAJ&hl=en">Pablo Valle</a><sup>*,1</sup>,</span>
+                      <span class="author-block"><a href="https://scholar.google.com/citations?user=-3y0BlAAAAAJ&hl=en">Pablo Valle</a><sup>1</sup>,</span>
                       <span class="author-block"><a href="https://scholar.google.com/citations?user=AcMLHeEAAAAJ&hl=en">Sergio Segura</a><sup>2</sup>,</span>
                       <span class="author-block"><a href="https://scholar.google.com/citations?user=S_UVLhUAAAAJ&hl=en">Shaukat Ali</a><sup>3</sup>,</span>
                       <span class="author-block"><a href="https://scholar.google.com/citations?user=ft06jF4AAAAJ&hl=en">Aitor Arrieta</a><sup>1</sup></span>
@@ -68,7 +67,7 @@
               <div class="column has-text-centered">
                 <div class="publication-links">
                   <span class="link-block">
-                    <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <a href="https://arxiv.org/abs/2602.22579" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <svg width="20" height="20" fill="none" viewBox="0 0 17.732 24.269" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -129,6 +128,7 @@
     </section>
 
     <section class="section">
+      <hr>
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column is-full">
@@ -139,19 +139,18 @@
               </p>
     
               <h3>MRP1: Trajectory Consistency (TC)</h3>
-              <p>Captures input transformations that should <strong>not</strong> affect the robot's trajectory ($d_F \lesssim \delta$), ensuring stability under superficial changes.</p>
+              <p>Captures input transformations that should <strong>not</strong> affect the robot's trajectory, ensuring stability under superficial changes.</p>
               <ul>
                 <li><strong>MR1: Synonym Substitution:</strong> Replacing action verbs with synonyms (e.g., "Pick" to "Grab") should yield an invariant trajectory.</li>
                 <li><strong>MR2: Non-Interfering Object Addition:</strong> Adding irrelevant objects (>0.1m from target) should not alter the planned path.</li>
-                <li><strong>MR3: Light Brightness Change:</strong> Altering scene illumination should not degrade visual grounding or execution consistency.</li>
+                <li><strong>MR3: Light Brightness Change:</strong> Slightly altering scene illumination should not degrade visual grounding or execution consistency.</li>
               </ul>
     
               <h3>MRP2: Trajectory Variation (TV)</h3>
               <p>Captures transformations that <strong>should</strong> induce predictable, measurable changes in the robot's trajectory.</p>
               <ul>
-                <li><strong>MR4: Negation or Task Inversion:</strong> Negating a command (e.g., "Don't pick") should result in a static pose or a significantly different trajectory ($d_F \gtrsim \delta$).</li>
-                <li><strong>MR5: Target Object Relocation:</strong> Moving the target object by $\Delta p$ must result in a proportional trajectory adaptation, bounded by lower ($\alpha$) and upper ($\beta$) constraints: 
-                  $$\alpha \Vert \Delta p \Vert \lesssim d_F \lesssim \beta \Vert \Delta p \Vert$$
+                <li><strong>MR4: Negation or Task Inversion:</strong> Negating a command (e.g., "Don't pick") should result in a static pose or a significantly different trajectory.</li>
+                <li><strong>MR5: Target Object Relocation:</strong> Moving the target object by $\Delta p$ must result in a proportional trajectory adaptation, bounded by lower and upper constraints: 
                 </li>
               </ul>
             </div>
@@ -162,11 +161,11 @@
 
     <section class="section">
       <div class="container is-max-desktop">
-        
+        <hr>
         <h2 class="title is-3 has-text-centered">Experimental Setup</h2>
         <div class="content has-text-justified">
           <p>
-            We evaluated <strong>five VLA models</strong> (OpenVLA, $\pi_0$, SpatialVLA, GR00T-N1.5, and EO-1) using the <strong>SimplerEnv</strong> benchmark. We focused on 1,864 source cases where the robot <strong>succeeded</strong>, generating <strong>9,320 follow-up test cases</strong> across four tasks: <em>Pick Up, Move Near, Put On,</em> and <em>Put In</em>.
+            We evaluated <strong>five VLA models</strong> (OpenVLA, Pi0, SpatialVLA, GR00T-N1.5, and EO-1) using the <strong>SimplerEnv</strong> benchmark. We focused on 1,864 source cases where the VLAs <strong>succeeded</strong>, generating <strong>9,320 follow-up test cases</strong> across all the VLA models, MRs and four tasks: <em>Pick Up, Move Near, Put On,</em> and <em>Put In</em>.
           </p>
         </div>
     
@@ -178,12 +177,50 @@
             In our evaluation we aimed at answering to the following research questions:
           </p>
           <ul>
-            <li><strong>RQ1 — Effectiveness:</strong> Comparison of MT vs. symbolic oracles using Fréchet distance thresholds.</li>
-            <li><strong>RQ2 — Sensitivity:</strong> Analysis of which input transformations (MRs) are most effective at detecting failures.</li>
-            <li><strong>RQ3 — Taxonomy:</strong> Categorization of failures revealed by MT that were invisible to standard evaluation.</li>
+            <li><strong>RQ1 — Effectiveness:</strong> How effective is MT at detecting failures in VLA-enabled robots?</li>
+            <li><strong>RQ2 — Sensitivity:</strong> How do different MRs differ in their ability to detect failures?</li>
+            <li><strong>RQ3 — Taxonomy:</strong> What types of failures does MT reveal?</li>
           </ul>
         </div>
     
+        <hr>
+        <h2 class="title is-3 has-text-centered">Results</h2>
+
+        <div class="columns">
+          <div class="column">
+            <div class="box has-background-light" style="height: 100%;">
+              <h3 class="title is-5">RQ1: Effectiveness</h3>
+              <p class="content">
+                MT successfully identified failures in <strong>[X]%</strong> of test scenarios, 
+                uncovering edge cases that traditional simulation testing missed by 
+                leveraging metamorphic violations.
+              </p>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="box has-background-light" style="height: 100%;">
+              <h3 class="title is-5">RQ2: Sensitivity</h3>
+              <p class="content">
+                Sensitivity varied significantly; <strong>Linguistic MRs</strong> (changing commands) 
+                triggered more failures than <strong>Visual MRs</strong> (lighting changes), 
+                suggesting VLAs are more sensitive to semantic input.
+              </p>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="box has-background-light" style="height: 100%;">
+              <h3 class="title is-5">RQ3: Taxonomy</h3>
+              <p class="content">
+                We identified three primary failure categories: 
+                <strong>Perceptual Misclassification</strong>, 
+                <strong>Spatial Reasoning Errors</strong>, and 
+                <strong>Instruction Drift</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
         <hr>
     
         <h2 class="title is-3 has-text-centered">Failure Case Comparisons</h2>
